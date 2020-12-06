@@ -9,8 +9,39 @@ document.getElementById("verGrafica").addEventListener("click", function() {
 
 document.getElementById("btnShowData").addEventListener("click", function(event) {
     event.preventDefault();
-    showData();
+    fillDataTable();
+    // fillTableDiferences();
+    //showData();
 });
+
+async function fillDataTable() {
+    let selectElem = document.getElementById("country");    // país seleccionado
+    let countryName = selectElem.options[selectElem.selectedIndex].text; // text value
+    // Datos a mostrar:
+    const recuperados = await getActualNumbers("recovered", countryName);
+    const confirmados = await getActualNumbers("confirmed", countryName);
+    const muertos = await getActualNumbers("deaths", countryName);
+    const cursando = confirmados - (muertos + recuperados);
+
+    const thead = document.getElementById("theadDatatable");
+    const tbody = document.getElementById("tbodyDatatable");
+
+    while (thead.firstChild) {  // elimino todos los childrens del thead
+        thead.removeChild(thead.firstChild); 
+    }
+
+    while (tbody.firstChild) {  // elimino todos los childrens del tbody
+        tbody.removeChild(tbody.firstChild); 
+    }
+    // luego, agrego nuevos elementos en thead y tbody:
+    const trDataInfo = document.createElement("TR");
+    const trEncabezado = document.createElement("TR");
+
+
+
+
+
+}
 
 async function showData() {
     let selectElem = document.getElementById("country");    // html element
@@ -38,10 +69,10 @@ async function showData() {
     // elimino el único child del elemento encabezado:
     trDataInfo.removeChild(trDataInfo.firstChild);
     // luego agrego el nuevo child:
-    // const informacion = document.createElement("TH");
-    // informacion.setAttribute("colspan", "4");
-    // informacion.appendChild(document.createTextNode(`Casos en ${countryName} a la fecha ${getTodayDate()}`));
-    // trDataInfo.appendChild(informacion);
+    const informacion = document.createElement("TH");
+    informacion.setAttribute("colspan", "4");
+    informacion.appendChild(document.createTextNode(`Casos en ${countryName} a la fecha ${getTodayDate()}`));
+    trDataInfo.appendChild(informacion);
 
     tr.appendChild(tdConfirmados);
     tr.appendChild(tdRecuperados);
@@ -56,31 +87,35 @@ async function showData() {
 
     // tabla con los datos de diferencias con el día anterior:
     const divTableDierence = document.getElementById("tableDiferences");
-    divTableDierence.innerHTML = `
-        <br>
-        <table class="DTtable" border="1">
-            <thead>
-                <tr>
-                    <th colspan="3">Comparación con el registro del dia de ayer.</th>
-                </tr>
-                <tr>
-                    <th>Nuevos casos:</th>
-                    <th>Nuevos recuperados:</th>
-                    <th>Nuevas muertes:</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>${confirmados - (await getYesterdayNumbers("confirmed", countryName))}</td>
-                    <td>${recuperados - (await getYesterdayNumbers("recovered", countryName))}</td>
-                    <td>${muertos - (await getYesterdayNumbers("deaths", countryName))}</td>
-                </tr>
-            </tbody>
-        </table>
-        <br>
-    `;
+    // divTableDierence.innerHTML = `
+    //     <br>
+    //     <table class="DTtable" border="1">
+    //         <thead>
+    //             <tr>
+    //                 <th colspan="3">Comparación con el registro del dia de ayer.</th>
+    //             </tr>
+    //             <tr>
+    //                 <th>Nuevos casos:</th>
+    //                 <th>Nuevos recuperados:</th>
+    //                 <th>Nuevas muertes:</th>
+    //             </tr>
+    //         </thead>
+    //         <tbody>
+    //             <tr>
+    //                 <td>${confirmados - (await getYesterdayNumbers("confirmed", countryName))}</td>
+    //                 <td>${recuperados - (await getYesterdayNumbers("recovered", countryName))}</td>
+    //                 <td>${muertos - (await getYesterdayNumbers("deaths", countryName))}</td>
+    //             </tr>
+    //         </tbody>
+    //     </table>
+    //     <br>
+    // `;
 
     document.getElementById("dataTable").style.display = "block";
+
+}
+
+async function fillTableDiferences() {
 
 }
 

@@ -10,3 +10,7 @@ footer {
     height: 220px;
 }
 */
+
+table thead, tbody {
+    text-align: center;
+}
