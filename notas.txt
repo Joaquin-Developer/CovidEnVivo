@@ -1,8 +1,8 @@
 COSAS POR HACER:
 
-- Areglar alineación de footer
-- Mejorar diseño 
-- Modificar código de App.js para no usar innerHTML
+- Mejorar y ordenar el código JavaScript de visualización de datos en las tablas
+- Mejorar el diseño de la segunda tabla
+
 - Agregar función de gráfica con comparación de datos
 - Agregar mas selección de países
 
