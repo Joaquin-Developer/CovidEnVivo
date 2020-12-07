@@ -15,6 +15,7 @@ document.getElementById("btnShowData").addEventListener("click", function(event)
 });
 
 async function fillDataTable() {
+    
     let selectElem = document.getElementById("country");    // país seleccionado
     let countryName = selectElem.options[selectElem.selectedIndex].text; // text value
     // Datos a mostrar:
@@ -36,10 +37,34 @@ async function fillDataTable() {
     // luego, agrego nuevos elementos en thead y tbody:
     const trDataInfo = document.createElement("TR");
     const trEncabezado = document.createElement("TR");
+    
+    const informacion = document.createElement("TH");
+    informacion.setAttribute("colspan", "4");
+    informacion.appendChild(document.createTextNode(`Casos en ${countryName} a la fecha ${getTodayDate()}`));
+    trDataInfo.appendChild(informacion);
 
+    const thConfirmados = document.createElement("TH");
+    thConfirmados.setAttribute("scope", "col");
+    thConfirmados.appendChild(document.createTextNode("CONFIRMADOS"));
+    const thReuperados = document.createElement("TH");
+    thReuperados.setAttribute("scope", "col");
+    thReuperados.appendChild(document.createTextNode("RECUPERADOS"));
+    const thMuertes = document.createElement("TH");
+    thMuertes.setAttribute("scope", "col");
+    thMuertes.appendChild(document.createTextNode("MUERTES"));
+    const thCursando = document.createElement("TH");
+    thCursando.setAttribute("scope", "col");
+    thCursando.appendChild(document.createTextNode("CURSANDO ENFERMEDAD"));
 
+    trEncabezado.appendChild(thConfirmados);
+    trEncabezado.appendChild(thReuperados);
+    trEncabezado.appendChild(thMuertes);
+    trEncabezado.appendChild(thCursando);
 
+    thead.appendChild(trDataInfo);
+    thead.appendChild(trEncabezado);
 
+    // elementos de tbody:
 
 }
 
@@ -69,10 +94,10 @@ async function showData() {
     // elimino el único child del elemento encabezado:
     trDataInfo.removeChild(trDataInfo.firstChild);
     // luego agrego el nuevo child:
-    const informacion = document.createElement("TH");
-    informacion.setAttribute("colspan", "4");
-    informacion.appendChild(document.createTextNode(`Casos en ${countryName} a la fecha ${getTodayDate()}`));
-    trDataInfo.appendChild(informacion);
+    // const informacion = document.createElement("TH");
+    // informacion.setAttribute("colspan", "4");
+    // informacion.appendChild(document.createTextNode(`Casos en ${countryName} a la fecha ${getTodayDate()}`));
+    // trDataInfo.appendChild(informacion);
 
     tr.appendChild(tdConfirmados);
     tr.appendChild(tdRecuperados);
