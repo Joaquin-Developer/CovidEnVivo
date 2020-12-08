@@ -9,6 +9,7 @@ document.getElementById("verGrafica").addEventListener("click", function() {
 
 document.getElementById("btnShowData").addEventListener("click", function(event) {
     event.preventDefault();
+    showProgressLoadTable();
     fillDataTable();
     fillTableDiferences();
 });
@@ -81,9 +82,6 @@ async function fillDataTable() {
     trBody.appendChild(tdCursando);
 
     tbody.appendChild(trBody);
-    // por último, hacemos visible la tabla:
-    // document.getElementById("table").style.display = "block";
-
 }
 
 async function fillTableDiferences() {
@@ -117,6 +115,15 @@ async function fillTableDiferences() {
             </tbody>
         </table>
     `;
+    hideProgressLoadTable();    // ocultamos el html-progress
+}
+
+function showProgressLoadTable() {
+    document.getElementById("progressLoadTable").style.display = "block";
+}
+
+function hideProgressLoadTable() {
+    document.getElementById("progressLoadTable").style.display = "none";
 }
 
 async function getData(dato, pais) {
