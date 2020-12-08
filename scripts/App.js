@@ -82,7 +82,7 @@ async function fillDataTable() {
 
     tbody.appendChild(trBody);
     // por último, hacemos visible la tabla:
-    document.getElementById("table").style.display = "block";
+    // document.getElementById("table").style.display = "block";
 
 }
 
