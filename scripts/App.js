@@ -8,7 +8,7 @@ document.getElementById("verGrafica").addEventListener("click", function() {
 });
 
 window.onload = () => {
-    alert("NOTA: Se rompió el link de jQuery. Esto implica que algunas" 
+    alert("NOTA: Se rompió el link de jQuery. Esto implica que algunas " 
         + "funcionalidades como la barra desplegable no se puedan usar :(");
 }
 
