@@ -7,6 +7,12 @@ document.getElementById("verGrafica").addEventListener("click", function() {
     alert("Función fuera de servicio por el momento...");
 });
 
+window.onload = () => {
+    alert("NOTA: Se rompió el link de jQuery. Esto implica que algunas" 
+        + "funcionalidades como la barra desplegable no se puedan usar :(");
+}
+
+
 document.getElementById("btnShowData").addEventListener("click", function(event) {
     event.preventDefault();
     showProgressLoadTable();
