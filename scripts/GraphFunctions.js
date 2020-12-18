@@ -1,8 +1,7 @@
-**
- * Coronavirus-live App
- * Version 1.0
- * Only map, popups & markers
+/**
+ * grafica.html functions
  * By Joaquin-Parrilla
+ * Edited on 2020/12/17.-
  */
 
 const $mapa = document.querySelector('#mapa');
@@ -52,7 +51,7 @@ async function renderData(){
                 map
             })    
             marker.addListener('click', () => {
-                popup.setContent(renderExtraData())
+                popup.setContent(renderExtraData());
             });
             popup.open(map, marker);
         }

@@ -1,11 +1,12 @@
 /**
  * index.html functions
  * By Joaquin-Parrilla
+ * Edited on 2020/12/17.-
  */
 
-document.getElementById("verGrafica").addEventListener("click", function() {
-    alert("Función fuera de servicio por el momento...");
-});
+// document.getElementById("verGrafica").addEventListener("click", function() {
+//     alert("Función fuera de servicio por el momento...");
+// });
 
 // addEventListener("load", function() {
 //     alert("NOTA: Se rompió el link de jQuery. Esto implica que algunas " 
