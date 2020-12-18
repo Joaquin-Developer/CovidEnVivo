@@ -4,6 +4,22 @@
  * Edited on 2020/12/17.-
  */
 
+const selectElem = document.getElementById("country");    // país seleccionado
+
+selectElem.addEventListener("change", function() {
+    getCountry();
+});
+
+function getCountry() {
+    const countryName = selectElem.options[selectElem.selectedIndex].text; // text value
+    console.log(countryName);
+}
+
+addEventListener("load", function() {
+    getCountry();
+});
+
+
 const $mapa = document.querySelector('#mapa');
 
 const map = new window.google.maps.Map($mapa, {

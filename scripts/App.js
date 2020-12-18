@@ -8,10 +8,13 @@
 //     alert("Función fuera de servicio por el momento...");
 // });
 
-// addEventListener("load", function() {
-//     alert("NOTA: Se rompió el link de jQuery. Esto implica que algunas " 
-//         + "funcionalidades como la barra desplegable no se puedan usar :(");
-// });
+addEventListener("load", function() {
+    
+    addOptionsInCountrySelect();
+    // alert("NOTA: Se rompió el link de jQuery. Esto implica que algunas " 
+    //     + "funcionalidades como la barra desplegable no se puedan usar :(");
+
+});
 
 document.getElementById("btnShowData").addEventListener("click", function(event) {
     event.preventDefault();
@@ -163,3 +166,40 @@ function getTodayDate(){
     return dd + '/' + mm + '/' + date.getFullYear();
 }
 
+// agregar nombres de todos los países al select del html
+async function addOptionsInCountrySelect() {
+    try {
+        const response = fetch("https://api.covid18api.com/countries")
+            .then(resp => {
+                if (!resp.ok) throw Error(resp.status);
+            });
+
+        const data = await (await response).json();
+        const countries = [];
+
+        data.forEach(elem => {
+            countries.push(elem.Country);   // agrego al array el nombre de el país.
+        });
+        // ordeno alfabéticamente (según unicode)los elementos del array:
+        countries.sort();
+
+        const selectElem = document.getElementById("country");
+        let cont = 1;
+
+        countries.forEach(element => {
+            const optionElem = document.createElement("OPTION");
+            optionElem.appendChild(document.createTextNode(element));
+            optionElem.setAttribute("value", `${cont}`);
+            cont++;
+            if (element === "Uruguay") {
+                optionElem.setAttribute("selected", "selected");
+            }
+            selectElem.appendChild(optionElem);
+        });
+        
+    } catch (ex) {
+        alert("Se produjo un error al cargar los datos de los países");
+        console.error(ex);
+    }
+
+}
