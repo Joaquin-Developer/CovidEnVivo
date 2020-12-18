@@ -169,7 +169,7 @@ function getTodayDate(){
 // agregar nombres de todos los países al select del html
 async function addOptionsInCountrySelect() {
     try {
-        const response = fetch("https://api.covid18api.com/countries")
+        const response = fetch("https://api.covid19api.com/countries")
             .then(resp => {
                 if (!resp.ok) throw Error(resp.status);
             });
