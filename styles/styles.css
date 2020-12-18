@@ -14,3 +14,7 @@ footer {
 table thead, tbody {
     text-align: center;
 }
+
+#navbarTitle {
+    color: #fff;
+}
