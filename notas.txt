@@ -1,8 +1,9 @@
 COSAS POR HACER:
 
-- Mejorar y ordenar el código JavaScript de visualización de datos en las tablas
-- Mejorar el diseño de la segunda tabla
+- Mejorar el diseño de la segunda tabla - index.html
 
-- Agregar función de gráfica con comparación de datos
-- Agregar mas selección de países
-
+- Agregar función de gráfica con comparación de datos - grafica.html
+- Datos: 
+	- evolución de muertos
+	- evolución de recuperados
+	- evolución de contagiados
