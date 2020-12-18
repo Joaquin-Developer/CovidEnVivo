@@ -18,6 +18,10 @@ function getCountry() {
 addEventListener("load", async function() {
     await addOptionsInCountrySelect();
     getCountry();
+    /**
+     * la idea es que al cargar la página ya se genere la
+     * gráfica (con el item seleccionado por defecto)
+     */
 });
 
 
@@ -37,9 +41,8 @@ async function addOptionsInCountrySelect() {
         const data = await (await response).json();
         const countries = [];
 
-        data.forEach(elem => {
-            countries.push(elem.Country);   // agrego al array el nombre de el país.
-        });
+        // agrego al array el nombre de el país:
+        data.forEach(elem => countries.push(elem.Country));
         // ordeno alfabéticamente (según unicode)los elementos del array:
         countries.sort();
 
