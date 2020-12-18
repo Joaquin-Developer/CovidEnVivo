@@ -169,11 +169,7 @@ function getTodayDate(){
 // agregar nombres de todos los países al select del html
 async function addOptionsInCountrySelect() {
     try {
-        const response = fetch("https://api.covid19api.com/countries")
-            .then(resp => {
-                if (!resp.ok) throw Error(resp.status);
-            });
-
+        const response = await fetch("https://api.covid19api.com/countries");
         const data = await (await response).json();
         const countries = [];
 
@@ -198,8 +194,9 @@ async function addOptionsInCountrySelect() {
         });
         
     } catch (ex) {
-        alert("Se produjo un error al cargar los datos de los países");
         console.error(ex);
+        alert("Se produjo un error al cargar los datos de los países");
+        location.reload();
     }
 
 }

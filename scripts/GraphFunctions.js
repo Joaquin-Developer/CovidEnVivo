@@ -12,64 +12,57 @@ selectElem.addEventListener("change", function() {
 
 function getCountry() {
     const countryName = selectElem.options[selectElem.selectedIndex].text; // text value
-    console.log(countryName);
+    console.log("nombre: " + countryName);
 }
 
-addEventListener("load", function() {
+addEventListener("load", async function() {
+    await addOptionsInCountrySelect();
     getCountry();
 });
 
 
-const $mapa = document.querySelector('#mapa');
+async function renderData() {
 
-const map = new window.google.maps.Map($mapa, {
-    center: {
-        lat: 0,
-        lng: 0
-    },
-    zoom: 3
-});
-renderData();
-
-async function getData(){
-    const response = fetch('https://wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/latest');
-    const data = await (await response).json();
-    return data;
 }
 
-const popup = new window.google.maps.InfoWindow(); // only
 
-function renderExtraData({ confirmed, deaths, recovered, provincestate, countryregion }) {
-    const coursed = confirmed - (deaths + recovered);
-    return `
-    <div>
-        <p><strong> ${provincestate} - ${countryregion} </strong></p>
-        <p>Confirmados: ${confirmed} </p>
-        <p>Recuperados: ${recovered} </p>
-        <p>Muertes: ${deaths} </p>
-        <p>Cursando: ${coursed} </p>
-    </div>
-    `;
+
+
+
+
+// agregar nombres de todos los países al select del html
+async function addOptionsInCountrySelect() {
+    try {
+        const response = await fetch("https://api.covid19api.com/countries");
+        const data = await (await response).json();
+        const countries = [];
+
+        data.forEach(elem => {
+            countries.push(elem.Country);   // agrego al array el nombre de el país.
+        });
+        // ordeno alfabéticamente (según unicode)los elementos del array:
+        countries.sort();
+
+        const selectElem = document.getElementById("country");
+        let cont = 1;
+
+        countries.forEach(element => {
+            const optionElem = document.createElement("OPTION");
+            optionElem.appendChild(document.createTextNode(element));
+            optionElem.setAttribute("value", `${cont}`);
+            cont++;
+            if (element === "Uruguay") {
+                optionElem.setAttribute("selected", "selected");
+            }
+            selectElem.appendChild(optionElem);
+        });
+        
+    } catch (ex) {
+        console.error(ex);
+        alert("Se produjo un error al cargar los datos de los países");
+        location.reload();
+    }
+
 }
 
-async function renderData(){
-    const data = await getData();
-    console.log(data);
-    // loop array and put red markers in map:
-    data.forEach(item => {
-        // solo mostramos markers de paises que tengan casos confirmados:
-        if(item.confirmed >= 0){
-            const marker = new window.google.maps.Marker({
-                position: {
-                    lat: item.location.lat,
-                    lng: item.location.lat,
-                },
-                map
-            })    
-            marker.addListener('click', () => {
-                popup.setContent(renderExtraData());
-            });
-            popup.open(map, marker);
-        }
-    });
-}
+
