@@ -33,19 +33,22 @@ addEventListener("resize", function(event) {
 
 function drawChart() {
     const data = {
-        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+        labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
         series: [
             [1, 1, 1, 3, 4, 5, 6, 8, 9, 10, 11, 14, 18, 21, 30]
         ]
     };
     // obtenemos dimensiónes de la pantalla, para establecer tamaño de gráfica acorde
-    const height = (window.innerHeight - 250);
-    const width = (window.innerWidth - 100);
+    let height;
+    if (isNotMobile()) {
+        height = (window.innerHeight - 250);
+    }
 
     const options = {
         responsive: true,
         maintainAspectRatio: false,
         // width: width,
+        
         height: height,
         showPoint: false,
         // Disable line smoothing
@@ -75,9 +78,9 @@ async function renderData() {
 
 }
 
-
-
-
+function isNotMobile() {
+    return ! /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
 
 
 // agregar nombres de todos los países al select del html
