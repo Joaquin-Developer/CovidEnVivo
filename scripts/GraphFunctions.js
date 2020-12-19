@@ -43,8 +43,29 @@ function drawChart() {
     const width = (window.innerWidth - 100);
 
     const options = {
-        width: width,
-        height: height
+        responsive: true,
+        maintainAspectRatio: false,
+        // width: width,
+        // height: height,
+        showPoint: false,
+        // Disable line smoothing
+        lineSmooth: true,
+        // X-Axis specific configuration
+        axisX: {
+            onlyInteger: true,
+            showGrid: true,
+            showLabel: true,
+            stacked: true,
+            gridLines: { display: false }
+        },
+        // Y-Axis specific configuration
+        axisY: {
+            // Lets offset the chart a bit from the labels
+            offset: 60,
+            gridLines: { display: true }
+        },
+        stretch: true
+
     };
     // chart object, recibe la data y object con parametros de configuración
     new Chartist.Line('.ct-chart', data, options);
