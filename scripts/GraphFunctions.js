@@ -35,7 +35,7 @@ function drawChart() {
     const data = {
         labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
         series: [
-            [5, 2, 4, 2, 0]
+            [1, 1, 1, 3, 4, 5, 6, 8, 9, 10, 11, 14, 18, 21, 30]
         ]
     };
     // obtenemos dimensiónes de la pantalla, para establecer tamaño de gráfica acorde
