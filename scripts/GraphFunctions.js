@@ -46,7 +46,7 @@ function drawChart() {
         responsive: true,
         maintainAspectRatio: false,
         // width: width,
-        // height: height,
+        height: height,
         showPoint: false,
         // Disable line smoothing
         lineSmooth: true,
