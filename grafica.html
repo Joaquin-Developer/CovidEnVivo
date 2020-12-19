@@ -8,6 +8,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
     <link rel="stylesheet" href="styles/styles.css"> <!-- Personal CSS -->
     <link rel="stylesheet" href="media/font-awesome/css/font-awesome.min.css"> <!-- Font-Awesome CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -52,6 +53,8 @@
         <h2>Evolución del Coronavirus</h2>
         <label for="country">Seleccione un país para ver su gráfica:</label>
         <select class="form-control" name="country" id="country"></select>
+        <div class="ct-chart ct-perfect-fourth"></div>
+        <button id="graph">click</button>
     </div>
     <footer id="footer" class="footer blockquote-footer bg-dark navbar-fixed-bottom" style="color: white;">
 		<div class="container">
@@ -75,7 +78,8 @@
 				</div>
 			</div>
 		</div>
-	</footer>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
     <script src="scripts/GraphFunctions.js"></script>
     <script src="scripts/jquery-3.3.1.slim.min.js"></script> <!-- NOTA: Dejar de usar jQuery :) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>

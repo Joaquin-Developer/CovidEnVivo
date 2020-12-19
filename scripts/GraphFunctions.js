@@ -1,7 +1,7 @@
 /**
  * grafica.html functions
  * By Joaquin-Parrilla
- * Edited on 2020/12/17.-
+ * Edited on 2020/12/18.-
  */
 
 const selectElem = document.getElementById("country");    // país seleccionado
@@ -18,12 +18,37 @@ function getCountry() {
 addEventListener("load", async function() {
     await addOptionsInCountrySelect();
     getCountry();
+    drawChart();
     /**
      * la idea es que al cargar la página ya se genere la
      * gráfica (con el item seleccionado por defecto)
      */
 });
 
+// cada vez que se modifiquen dimensiones de la pantalla, se deberá 
+// modificar dimenciónes de la gráfica:
+addEventListener("resize", function(event) {
+    drawChart();
+});
+
+function drawChart() {
+    const data = {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+        series: [
+            [5, 2, 4, 2, 0]
+        ]
+    };
+    // obtenemos dimensiónes de la pantalla, para establecer tamaño de gráfica acorde
+    const height = (window.innerHeight - 250);
+    const width = (window.innerWidth - 100);
+
+    const options = {
+        width: width,
+        height: height
+    };
+    // chart object, recibe la data y object con parametros de configuración
+    new Chartist.Line('.ct-chart', data, options);
+}
 
 async function renderData() {
 
