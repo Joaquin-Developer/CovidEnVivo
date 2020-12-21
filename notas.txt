@@ -2,8 +2,11 @@ COSAS POR HACER:
 
 - Mejorar el diseño de la segunda tabla - index.html
 
-- Agregar función de gráfica con comparación de datos - grafica.html
+- Mejorar gráfica con comparación de datos - grafica.html
 - Datos: 
-	- evolución de muertos
-	- evolución de recuperados
-	- evolución de contagiados
+	- evolución de confirmados - ok
+	- evolución de muertos - s/h
+	- evolución de recuperados - s/h
+	- evolución de contagiados - s/h
+
+- Mejorar diseño de labels de la gráfica. (Cuando hay mucho texto se amontona) 
