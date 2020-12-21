@@ -7,22 +7,12 @@
 const selectElem = document.getElementById("country");    // país seleccionado
 
 selectElem.addEventListener("change", function() {
-    getCountry();
+    drawChart();
 });
-
-function getCountry() {
-    const countryName = selectElem.options[selectElem.selectedIndex].text; // text value
-    console.log("nombre: " + countryName);
-}
 
 addEventListener("load", async function() {
     await addOptionsInCountrySelect();
-    getCountry();
     drawChart();
-    /**
-     * la idea es que al cargar la página ya se genere la
-     * gráfica (con el item seleccionado por defecto)
-     */
 });
 
 // cada vez que se modifiquen dimensiones de la pantalla, se deberá 
@@ -31,11 +21,34 @@ addEventListener("resize", function(event) {
     drawChart();
 });
 
-function drawChart() {
+async function drawChart() {
+
+    const info = await getConfirmedCases();
+    let seriesConfirmed = [];
+    let labelConfirmed = [];
+
+    for (let i = 0; i < info.length; i++) {
+        
+        if (info[i].Cases === 0) {
+            continue;
+        }
+        // agregamos (en caso que no sea 0), el nro de casos confirmados al array
+        seriesConfirmed.push(info[i].Cases);
+
+        const fecha = new Date(info[i].Date);
+        const label = fecha.getUTCDate() + "/" + (fecha.getUTCMonth() + 1) + "/" + fecha.getUTCFullYear();
+        // vamos a mostrar la 1° fecha, y luego todos los 1ros de cada mes
+        if (labelConfirmed.length === 0 || fecha.getUTCDate() === 1) {
+            labelConfirmed.push(label);
+        } else {
+            labelConfirmed.push("");
+        }
+    }
+
     const data = {
-        labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+        labels: labelConfirmed, //[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, "", "", "1"],
         series: [
-            [1, 1, 1, 3, 4, 5, 6, 8, 9, 10, 11, 14, 18, 21, 30]
+            seriesConfirmed
         ]
     };
     // obtenemos dimensiónes de la pantalla, para establecer tamaño de gráfica acorde
@@ -48,7 +61,6 @@ function drawChart() {
         responsive: true,
         maintainAspectRatio: false,
         // width: width,
-        
         height: height,
         showPoint: false,
         // Disable line smoothing
@@ -74,14 +86,25 @@ function drawChart() {
     new Chartist.Line('.ct-chart', data, options);
 }
 
-async function renderData() {
-
+async function getConfirmedCases() {
+    try {
+        const response = await fetch("https://api.covid19api.com/total/country/" + getSelectedCountry() + "/status/confirmed");
+        const data = await (await response).json();
+        return data;
+    } catch (exception) {
+        console.error(exception);
+        alert("Se produjo un error al obtener los datos de la API");
+        location.reload();
+    }
 }
 
 function isNotMobile() {
     return ! /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
 
+function getSelectedCountry() { // retorna país seleccionado en html <select>
+    return selectElem.options[selectElem.selectedIndex].text; 
+}
 
 // agregar nombres de todos los países al select del html
 async function addOptionsInCountrySelect() {
