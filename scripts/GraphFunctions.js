@@ -36,7 +36,7 @@ async function drawChart() {
         seriesConfirmed.push(info[i].Cases);
 
         const fecha = new Date(info[i].Date);
-        const label = fecha.getUTCDate() + "/" + (fecha.getUTCMonth() + 1) + "/" + fecha.getUTCFullYear();
+        const label = fecha.getUTCDate() + "/" + (fecha.getUTCMonth() + 1);
         // vamos a mostrar la 1° fecha, y luego todos los 1ros de cada mes
         if (labelConfirmed.length === 0 || fecha.getUTCDate() === 1) {
             labelConfirmed.push(label);
