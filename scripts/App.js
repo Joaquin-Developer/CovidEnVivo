@@ -136,9 +136,16 @@ function hideProgressLoadTable() {
 }
 
 async function getData(dato, pais) {
-    const response = fetch("https://api.covid19api.com/total/country/" + pais + "/status/" + dato);
-    const data = await (await response).json();
-    return data;
+    try {
+        const response = fetch("https://api.covid19api.com/total/country/" + pais + "/status/" + dato);
+        const data = await (await response).json();
+        return data;
+    } catch (error) {
+        console.log(error);
+        alert("Error al obtener los datos de la API");
+        location.reload();
+    }
+    
 }
 
 async function getActualNumbers(dataType, countryName) {
@@ -175,7 +182,6 @@ async function addOptionsInCountrySelect() {
         const countries = [];
 
         data.forEach(elem => {
-            console.log(elem);
             countries.push(elem.name);   // agrego al array el nombre de el país.
         });
         // ordeno alfabéticamente (según unicode)los elementos del array:
