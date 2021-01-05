@@ -101,7 +101,6 @@ async function fillTableDiferences() {
     const recuperados = await getActualNumbers("recovered", countryName);
     const confirmados = await getActualNumbers("confirmed", countryName);
     const muertos = await getActualNumbers("deaths", countryName);
-    const cursando = confirmados - (muertos + recuperados);
 
     document.getElementById("tableDiferences").innerHTML = `
         <table class="DTtable" border="1">
