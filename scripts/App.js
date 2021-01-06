@@ -1,7 +1,7 @@
 /**
- * index.html functions
+ * index.html functions - CovidEnVivo
  * By Joaquin-Parrilla
- * Edited on 2020/12/17.-
+ * Edited on 2021/01/06.-
  */
 
 // document.getElementById("verGrafica").addEventListener("click", function() {
@@ -125,13 +125,16 @@ async function fillTableDiferences() {
     `;
     hideProgressLoadTable();    // ocultamos el html-progress
 }
+const progressLoad = document.getElementById("progressLoadTable");
 
 function showProgressLoadTable() {
-    document.getElementById("progressLoadTable").style.display = "block";
+    progressLoad.classList.remove("none");
+    progressLoad.classList.add("block");
 }
 
 function hideProgressLoadTable() {
-    document.getElementById("progressLoadTable").style.display = "none";
+    progressLoad.classList.remove("block");
+    progressLoad.classList.add("none");
 }
 
 async function getData(dato, pais) {

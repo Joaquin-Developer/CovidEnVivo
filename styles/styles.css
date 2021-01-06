@@ -15,6 +15,16 @@ table thead, tbody {
     text-align: center;
 }
 
+@media (max-width: 550px) {
+    table thead, tbody {
+        font-size: 2vw !important;
+    }
+}
+
 #navbarTitle {
     color: #fff;
 }
+
+.block { display: block; }
+
+.none { display: none; }
