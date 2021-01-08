@@ -1,7 +1,7 @@
 /**
- * Mi primer Web_Scrapping básico con JavaScript :)
+ * Web_Scrapping para obtener datos actualizados del msp (solo para datos de Uruguay)
  * Voy a obtener datos del covid de la página del gobierno.
- * 5 de enero de 2021.-
+ * Actualizado: 8-enero-2021
  */
 
 const puppeteer = require("puppeteer");
@@ -9,7 +9,7 @@ const puppeteer = require("puppeteer");
 (async () => {
     try {
         // con headless: false será visible la ventana del navegador.
-        const browser = await puppeteer.launch({ headless: false });
+        const browser = await puppeteer.launch({ headless: true });
         const page = await browser.newPage();
         await page.setDefaultNavigationTimeout(0); 
     
@@ -25,8 +25,14 @@ const puppeteer = require("puppeteer");
         });
 
         console.log(data);
+
+        /**
+         * esta data que obtenemos se debe procesar...
+         * y guardar en una base de datos MongoDB
+         */
     
         await browser.close();  // al final, cerramos el navegador
+
     } catch(error) {
         console.log(error);
     }
