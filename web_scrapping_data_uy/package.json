@@ -1,0 +1,26 @@
+{
+  "name": "web_scrapping_data_uy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src",
+    "dev": "nodemon src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joaquin-Parrilla/CovidEnVivo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Joaquin-Parrilla/CovidEnVivo/issues"
+  },
+  "homepage": "https://github.com/Joaquin-Parrilla/CovidEnVivo#readme",
+  "dependencies": {
+    "nodemon": "^2.0.6",
+    "puppeteer": "^5.5.0"
+  }
+}
