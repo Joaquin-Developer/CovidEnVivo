@@ -16,5 +16,5 @@ Aplicación para visualizar las estadístias del covid-19 en todo el mundo.
 - En caso de automatizar el servicio con el servicio CRONTAB, puede ejecutar el siguiente script: `./CronConfig.sh`
 
 ### Utilizar la aplicación a nivel de usuario:
-- Dirigirse a [joaquin-parrilla.github.io/](https://joaquin-parrilla.github.io/)
+- Dirigirse a [joaquin-parrilla.github.io/CovidEnVivo](https://joaquin-parrilla.github.io/CovidEnVivo)
 
