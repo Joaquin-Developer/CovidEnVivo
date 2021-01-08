@@ -4,7 +4,7 @@ Aplicación para visualizar las estadístias del covid-19 en todo el mundo.
 
 - Incluye un servicio de Web-Scrapping para obtener datos actualizados de la página del ministerio de salud (sólo para Uruguay)
 - Para el resto de países:
-	- Se extraen datos de la API: [covid19api](https://api.covid19api.com)
+	- Se extraen datos de la API: [covid19api](https://covid19api.com)
 - Los datos de casos recuperados, muertes, y personas cursando la enfermedad se visualiza en forma de tabla.
 - Se puede visualizar una gráfica para hacer seguimiento de la evolución de casos activos en cada país
 
