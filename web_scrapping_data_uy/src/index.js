@@ -9,7 +9,7 @@ const puppeteer = require("puppeteer");
 (async () => {
     try {
         // con headless: false será visible la ventana del navegador.
-        const browser = await puppeteer.launch({ headless: true });
+        const browser = await puppeteer.launch({ headless: false });
         const page = await browser.newPage();
         await page.setDefaultNavigationTimeout(0); 
     
