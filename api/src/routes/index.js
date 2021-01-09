@@ -29,7 +29,7 @@ router.post("/api/send", function(req, res) {
 });
 
 router.get("*", function(req, res) {
-    res.send("404 not found");
+    res.status(404).send("<h1>404 - Not Found</h1><hr><p>Ruta inválida</p>");
 });
 
 
