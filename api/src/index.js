@@ -1,6 +1,7 @@
 
 const express = require("express");
 const app = express();
+const bodyParser = require("body-parser");
 
 // settings:
 app.set("port", process.env.PORT || 6300);
@@ -12,8 +13,8 @@ app.set("view engine", "ejs");
 // implementar ...
 
 // middlewares:
-// app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // routes:
 app.use(require("./routes/index"));

@@ -2,7 +2,6 @@
 const express = require("express");
 const router = express.Router();
 
-// create my routes:
 
 router.get("/", function(req, res) {
     const data = {
@@ -12,10 +11,27 @@ router.get("/", function(req, res) {
     res.json(data);
 });
 
+router.post("/api/send", function(req, res) {
 
-// router.get("*", function(req, res) {
-//     res.send("404 not found");
-// });
+    if (req.body.data && req.body.message) {
+        const data = req.body.data;
+        const mensaje = req.body.message;
+        const respuesta = {
+            mensaje1: "Formulario recibido correctamente!!",
+            mensaje2: `Tu dato es: ${data} y tu mensaje fué: ${mensaje}`
+        };
+        res.json(respuesta);
+    } else {
+        // si no se encuentra body.data o body.message:
+        res.json({ "Error:": "NO se pudo procesar la petición porque faltaron datos." });
+    }
+
+});
+
+router.get("*", function(req, res) {
+    res.send("404 not found");
+});
+
 
 // exports my routes:
 module.exports = router;
