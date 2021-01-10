@@ -3,17 +3,18 @@ const express = require("express");
 const router = express.Router();
 const ExampleClass = require("../models/ExampleClass");
 
-// const ExampleClass = require("./models/ExampleClass");  // ejemplo de importación de una clase externa
+router.get("/", getHelpPage);
+router.get("/api", getHelpPage);
+router.get("/api/help", getHelpPage);
 
-router.get("/", function(request, response) {
+function getHelpPage(request, response) {
     const example = new ExampleClass("Joaquin", 18);    // instancia de clase externa
     const data = {
         data: example.name, 
         content: example.toString()
     }
-
     response.json(data);
-});
+}
 
 router.post("/api/send", function(request, response) {
 

@@ -1,4 +1,3 @@
-
 class ExampleClass {
 
     constructor(name, age) {
@@ -13,5 +12,3 @@ class ExampleClass {
 }
 
 module.exports = ExampleClass ;
-
-// export default ExampleClass;
