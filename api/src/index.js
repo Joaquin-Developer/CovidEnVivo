@@ -9,7 +9,7 @@ app.engine("html", require("ejs").renderFile);
 app.set("view engine", "ejs");
 
 // db connection
-require("./database/DBController");
+require("./controllers/DBController");
 
 // middlewares:
 app.use(bodyParser.urlencoded({ extended: true }));

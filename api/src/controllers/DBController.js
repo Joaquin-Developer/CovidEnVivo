@@ -18,14 +18,31 @@ connection.connect(function(error) {
     console.log("MYSQL-DB Connected!")
 });
 
-connection.query("SELECT * FROM example", function (error, result, fields) {
-    if (error) throw error;
+module.exports = connection;
 
-    for (let elem of result) {
-        console.log(`El nombre es ${elem.name} y su mensaje fué ${elem.message}`)
-    }
+// connection.query("SELECT * FROM example", function (error, result, fields) {
+//     if (error) throw error;
 
-});
+//     for (let elem of result) {
+//         console.log(`El nombre es ${elem.name} y su mensaje fué ${elem.message}`)
+//     }
+
+// });
+
+// const sqlQuery = "select nameCountry, dateCases, confirmed, recovered, deaths from cases_data where nameCountry = 'EXAMPLE_1' order by id desc limit 1";
+
+// connection.query(sqlQuery, function(error, result, fields) {
+//     if (error) throw error;
+//     if (result[0] === undefined) {
+//         console.log("No hay datos en la bd");
+//     } else {
+//         console.log(result[0]);
+//         let fecha = new Date(result[0].dateCases);
+//         console.log(`Fecha: ${fecha.getUTCDate()}/${fecha.getMonth() + 1}/${fecha.getUTCFullYear()}`);
+
+//     }
+    
+// });
 
 
 /**
