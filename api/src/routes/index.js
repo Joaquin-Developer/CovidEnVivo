@@ -1,29 +1,33 @@
 
 const express = require("express");
 const router = express.Router();
+const ExampleClass = require("../models/ExampleClass");
 
+// const ExampleClass = require("./models/ExampleClass");  // ejemplo de importación de una clase externa
 
-router.get("/", function(req, res) {
+router.get("/", function(request, response) {
+    const example = new ExampleClass("Joaquin", 18);    // instancia de clase externa
     const data = {
-        data: "mensaje", 
-        content: "Hola, esto es una petición GET!"
+        data: example.name, 
+        content: example.toString()
     }
-    res.json(data);
+
+    response.json(data);
 });
 
-router.post("/api/send", function(req, res) {
+router.post("/api/send", function(request, response) {
 
-    if (req.body.data && req.body.message) {
-        const data = req.body.data;
-        const mensaje = req.body.message;
+    if (request.body.data && request.body.message) {
+        const data = request.body.data;
+        const mensaje = request.body.message;
         const respuesta = {
             mensaje1: "Formulario recibido correctamente!!",
             mensaje2: `Tu dato es: ${data} y tu mensaje fué: ${mensaje}`
         };
-        res.json(respuesta);
+        response.json(respuesta);
     } else {
         // si no se encuentra body.data o body.message:
-        res.json({ "Error:": "NO se pudo procesar la petición porque faltaron datos." });
+        response.json({ "Error:": "NO se pudo procesar la petición porque faltaron datos." });
     }
 
 });
