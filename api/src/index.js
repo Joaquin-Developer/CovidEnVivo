@@ -9,6 +9,26 @@ app.engine("html", require("ejs").renderFile);
 app.set("view engine", "ejs");
 
 // db connection
+require("./database/DBController");
+
+
+// const MongoClient = mongodb.MongoClient;
+// const urlDatabase = "http://den1.mongo1.gear.host:27001/covidsrappingapi";
+
+//mongodb.Db
+
+// MongoClient.connect(urlDatabase)
+//     .then(db => console.log("Database is connected!"))
+//     .catch(err => console.error(err));
+
+// let MongoClient = mongodb.MongoClient;
+// const url = "";
+
+// MongoClient.connect(urlDatabase, { uri_decode_auth: true }, function(err, db) {
+//   if (err) throw err;
+//   console.log("Connected to " + url + " database!");
+//   db.close();
+// });
 
 // implementar ...
 
