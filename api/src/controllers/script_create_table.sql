@@ -16,7 +16,7 @@ create table if not exists cases_data(
 
 select id, nameCountry "Pais", dateCases "fecha", confirmed "confirmados", 
 recovered "Recuperados", deaths "Muertes"
-from cases_data where nameCountry = "Nombre_del_pais"
-order by id desc
-limit 1;
+from cases_data
+where nameCountry = "EXAMPLE_1" 
+and id = (select max(id) from cases_data);
 
