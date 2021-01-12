@@ -26,6 +26,9 @@ router.post("/api/lastcases", dbController.getLastRecordByCountry);
 
 router.post("/api/allcases", dbController.getAllRecordByCountry);
 
+router.post("/api/insertrecord", dbController.insertRecordByCountry);
+
+
 // invalid routes:
 router.get("*", function(req, res) {
     res.status(404).send("<h1>404 - Not Found</h1><hr><p>Ruta inválida</p>");

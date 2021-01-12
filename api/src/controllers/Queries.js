@@ -41,8 +41,8 @@ queries.insertRecordByCountry = (req, res) => {
         if ((! isNaN(req.body.country)) && isNaN(req.body.confirmed) 
             && isNaN(req.body.recovered) && isNaN(req.body.deaths)) {
             res.json({
-                error: "Los datos están en formatos invalidos",
-                sugerencia: "Los datos deben ser enteros y los nombres de países no pueden contener números"
+                message: "Error: Los datos están en formatos invalidos",
+                message2: "Los datos deben ser enteros y los nombres de países no pueden contener números"
             });    
         } else {
             // todo ok:
@@ -55,12 +55,12 @@ queries.insertRecordByCountry = (req, res) => {
         
             connection.query(sqlQuery, (error, result, fields) => {
                 if (error) throw error;
-                else res.send("Datos ingresados correctamente!");
+                res.json({ message: "Datos ingresados correctamente!" });
             });
 
         }
     } else {
-        res.json({ error: "Datos incompletos!" });
+        res.json({ message: "Error: Datos incompletos!" });
     }
 
 }
