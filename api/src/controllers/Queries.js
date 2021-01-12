@@ -37,6 +37,7 @@ queries.getAllRecordByCountry = function(req, res) {
 
 queries.insertRecordByCountry = (req, res) => {
 
+    
     // primero verificar los datos que obtengo del cliente...
     /**
      * Falta Hacer esta parte...
@@ -47,7 +48,8 @@ queries.insertRecordByCountry = (req, res) => {
     const actualDate = `${dt.getUTCFullYear()}-${dt.getMonth() + 1}-${dt.getUTCDate()}`;
 
     const sqlQuery = `insert into cases_data (id, nameCountry, dateCases, recovered, confirmed, deaths)`
-        + `values (null, '${body.country}', '${actualDate}', ${body.recovered}, ${body.confirmed}, ${body.deaths})`;
+        + `values (null, '${req.body.country}', '${actualDate}', ${req.body.recovered}, 
+        ${req.body.confirmed}, ${req.body.deaths})`;
 
     connection.query(sqlQuery, (error, result, fields) => {
         if (error) throw error;
