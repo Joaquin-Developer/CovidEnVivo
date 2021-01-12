@@ -37,24 +37,32 @@ queries.getAllRecordByCountry = function(req, res) {
 
 queries.insertRecordByCountry = (req, res) => {
 
-    
-    // primero verificar los datos que obtengo del cliente...
-    /**
-     * Falta Hacer esta parte...
-     */
+    if (req.body.country && req.body.recovered && req.body.confirmed && req.body.deaths) {
+        if ((! isNaN(req.body.country)) && isNaN(req.body.confirmed) 
+            && isNaN(req.body.recovered) && isNaN(req.body.deaths)) {
+            res.json({
+                error: "Los datos están en formatos invalidos",
+                sugerencia: "Los datos deben ser enteros y los nombres de países no pueden contener números"
+            });    
+        } else {
+            // todo ok:
+            const dt = new Date();
+            const actualDate = `${dt.getUTCFullYear()}-${dt.getMonth() + 1}-${dt.getUTCDate()}`;
+        
+            const sqlQuery = `insert into cases_data (id, nameCountry, dateCases, recovered, confirmed, deaths)`
+                + `values (null, '${req.body.country}', '${actualDate}', ${req.body.recovered}, 
+                ${req.body.confirmed}, ${req.body.deaths})`;
+        
+            connection.query(sqlQuery, (error, result, fields) => {
+                if (error) throw error;
+                else res.send("Datos ingresados correctamente!");
+            });
 
-    
-    const dt = new Date();
-    const actualDate = `${dt.getUTCFullYear()}-${dt.getMonth() + 1}-${dt.getUTCDate()}`;
+        }
+    } else {
+        res.json({ error: "Datos incompletos!" });
+    }
 
-    const sqlQuery = `insert into cases_data (id, nameCountry, dateCases, recovered, confirmed, deaths)`
-        + `values (null, '${req.body.country}', '${actualDate}', ${req.body.recovered}, 
-        ${req.body.confirmed}, ${req.body.deaths})`;
-
-    connection.query(sqlQuery, (error, result, fields) => {
-        if (error) throw error;
-        else res.send("Datos ingresados correctamente!");
-    });
 }
 
 

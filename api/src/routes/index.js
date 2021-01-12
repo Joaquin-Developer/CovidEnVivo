@@ -12,8 +12,8 @@ router.post("/api/send", function(request, response) {
 
     if (request.body.data && request.body.message) {
         response.json({
-            mensaje1: "Formulario recibido correctamente!!",
-            mensaje2: `Tu dato es: ${request.body.data} y tu mensaje fué: ${request.body.message}`
+            notificationMessage: "Formulario recibido correctamente!!",
+            data: `Tu dato es: ${request.body.data} y tu mensaje fué: ${request.body.message}`
         });
     } else {
         // si no se encuentra body.data o body.message:
