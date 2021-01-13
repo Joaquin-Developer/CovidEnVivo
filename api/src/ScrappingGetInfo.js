@@ -5,6 +5,7 @@
  */
 
 const puppeteer = require("puppeteer");
+const fetch = require("node-fetch");
 
 (async () => {
     try {
@@ -42,7 +43,7 @@ const puppeteer = require("puppeteer");
         /**
          * Mandamos los datos a la API, y la misma se encarga de guardarlos en la bd
          */
-        let request = {
+        const request = {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
