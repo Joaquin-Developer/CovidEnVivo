@@ -12,9 +12,9 @@ Aplicación para visualizar las estadístias del covid-19 en todo el mundo.
 - Npm (6.14.4), node (10.19.0) instalados
 
 ### Úso del scrapping:
-- En `~/CovidEnVivo/web_scrapping_data_uy` ejecutar el script `./AutomatedScrapping.sh` o `npm run start`
+- En `~/CovidEnVivo/api` ejecutar el script `./AutomatedScrapping.sh` o `npm run start` (`npm run dev` para desarrollo)
 - En caso de automatizar el servicio con el servicio CRONTAB, puede ejecutar el siguiente script: `./CronConfig.sh`
+- En caso de solicitar permisos: ejecute `chmod 770 CronConfig.sh`
 
 ### Utilizar la aplicación a nivel de usuario:
 - Dirigirse a [joaquin-parrilla.github.io/CovidEnVivo](https://joaquin-parrilla.github.io/CovidEnVivo)
-
