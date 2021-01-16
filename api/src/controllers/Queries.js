@@ -48,16 +48,21 @@ queries.insertRecordByCountry = (req, res) => {
             // todo ok:
             const dt = new Date();
             const actualDate = `${dt.getUTCFullYear()}-${dt.getMonth() + 1}-${dt.getUTCDate()}`;
-        
-            const sqlQuery = `insert into cases_data (id, nameCountry, dateCases, recovered, confirmed, deaths)`
-                + `values (null, '${req.body.country}', '${actualDate}', ${req.body.recovered}, 
-                ${req.body.confirmed}, ${req.body.deaths})`;
-        
-            connection.query(sqlQuery, (error, result, fields) => {
-                if (error) throw error;
-                res.json({ message: "Datos ingresados correctamente!" });
-            });
 
+            if (! verifyNoRecordsSameDay(req.body.country, actualDate)) 
+            {    
+                const sqlQuery = `insert into cases_data (id, nameCountry, dateCases, recovered, confirmed, deaths)`
+                    + `values (null, '${req.body.country}', '${actualDate}', ${req.body.recovered}, 
+                    ${req.body.confirmed}, ${req.body.deaths})`;
+        
+                connection.query(sqlQuery, (error, result, fields) => {
+                    if (error) throw error;
+                    res.json({ message: "Datos ingresados correctamente!" });
+                });
+            } else {
+                res.json({ message: "Error: ya existe un registro de este país con la misma fecha" });
+            }
+        
         }
     } else {
         res.json({ message: "Error: Datos incompletos!" });
@@ -65,5 +70,10 @@ queries.insertRecordByCountry = (req, res) => {
 
 }
 
+function verifyNoRecordsSameDay(dt, nameCountry) {
+    // retorna true si ya existe un registro en la base de datos con
+    // la misma fecha que se intenta registrar de un país
+    return true;
+}
 
 module.exports = queries;

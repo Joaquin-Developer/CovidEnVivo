@@ -1,7 +1,7 @@
 /**
  * Web_Scrapping para obtener datos actualizados del msp (solo para datos de Uruguay)
  * Voy a obtener datos del covid de la página del gobierno.
- * Actualizado: 12-enero-2021
+ * Actualizado: 16-enero-2021
  */
 
 const puppeteer = require("puppeteer");
@@ -10,7 +10,7 @@ const fetch = require("node-fetch");
 (async () => {
     try {
         // con headless: false será visible la ventana del navegador.
-        const browser = await puppeteer.launch({ headless: false });
+        const browser = await puppeteer.launch({ headless: true });
         const page = await browser.newPage();
         await page.setDefaultNavigationTimeout(0); 
         //await page.goto("https://www.gub.uy/ministerio-salud-publica/tematica/coronavirus");
@@ -30,11 +30,15 @@ const fetch = require("node-fetch");
             let deathsCases = deathsCasesDiv.childNodes[0].childNodes[0].textContent;
 
             return {
-                countryName: "Uruguay",
-                all: allCases,
+                country: "Uruguay",
+                confirmed: allCases,
                 recovered: recoveredCases,
                 deaths: deathsCases
             };
+            /**
+             * Nota: debo quitar los "." de los numeros
+             * también las comas de cada campo
+             */
 
         });
         console.log(data);
