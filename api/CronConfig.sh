@@ -1,5 +1,4 @@
 #!/bin/bash
 
 # script para configuración del CRON en un servidor
-# sudo [agregar linea de Cron Aqui] >> /etc/crontab
-
+echo "0 23 * * * root node src/ScrappingGetInfo.js" >> /etc/crontab
