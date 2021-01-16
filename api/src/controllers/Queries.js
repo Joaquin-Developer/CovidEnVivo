@@ -49,7 +49,7 @@ queries.insertRecordByCountry = (req, res) => {
             const dt = new Date();
             const actualDate = `${dt.getUTCFullYear()}-${dt.getMonth() + 1}-${dt.getUTCDate()}`;
 
-            if (! verifyNoRecordsSameDay(req.body.country, actualDate)) 
+            if (! verifyNoRecordsSameDay(req.body.country, actualDate)) // si no hay registros en la bd
             {    
                 const sqlQuery = `insert into cases_data (id, nameCountry, dateCases, recovered, confirmed, deaths)`
                     + `values (null, '${req.body.country}', '${actualDate}', ${req.body.recovered}, 
