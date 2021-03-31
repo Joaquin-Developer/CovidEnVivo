@@ -73,7 +73,15 @@ queries.insertRecordByCountry = (req, res) => {
 function verifyNoRecordsSameDay(dt, nameCountry) {
     // retorna true si ya existe un registro en la base de datos con
     // la misma fecha que se intenta registrar de un país
-    return true;
+    const sqlQuery = `select * from cases_data 
+        where nameCountry = '${nameCountry}' and dataCases = '${dt}'`;
+
+    let con = connection.query(sqlQuery, (error, result, fields) => {
+        if (error) throw error;
+        if (result.length === 0) return false; else return true;
+    });
+    console.log("con value: " + con);
+    return con;
 }
 
 module.exports = queries;
