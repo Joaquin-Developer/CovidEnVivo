@@ -11,15 +11,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
     <!-- custom css: -->
     <link rel="stylesheet" href="styles/style.css">
+    <!-- Import Vue.js: -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 </head>
 <body>
     <div id="app">
         <nav-component></nav-component>
         
         <div class="container">
-            <h2 class="title">Datos del Coronavirus en vivo</h2>
+            <h2 class="title">{{ title }}</h2>
             <selectcountry-component></selectcountry-component>
-            <show-data-component></show-data-component>
+            <!-- <show-data-component></show-data-component> -->
             
 
 
@@ -33,13 +35,11 @@
             
         </div>
     </div> <!-- End app -->
-    <!-- Import Vue.js: -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    
     <!-- Scripts: -->
     <script src="scripts/vue_components/Navigation.js"></script>
     <script src="scripts/vue_components/SelectCountry.js"></script>
     <script src="scripts/vue_components/ShowData.js"></script>
-    <script src="scripts/app.js"></script>
     <script src="scripts/index.js"></script>
 </body>
 </html>
