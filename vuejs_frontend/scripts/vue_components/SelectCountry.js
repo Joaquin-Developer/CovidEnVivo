@@ -32,8 +32,6 @@ Vue.component("selectcountry-component", {
                 {{ country }}
             </option>            
         </select>
-
-        {{selected}}
     </div>
     `
 

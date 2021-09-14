@@ -5,7 +5,7 @@ new Vue({
 
     data() {
         return {
-            title: "Datos del Coronavirus en Vivo"
+            title: "Datos del Coronavirus en Vivo - En desarrollo"
         }
     }
 

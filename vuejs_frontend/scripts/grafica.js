@@ -5,7 +5,7 @@ new Vue({
 
     data() {
         return {
-            title: "Grafica xd"
+            title: "Grafica - En desarrollo"
         }
     }
 
